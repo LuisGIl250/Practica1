@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario JS</title>
+</head>
+<body>
+   <b>¿Cuál es tu nombre?</b>
+   <input type="text" id="Nombre">
+   <br><br>
+   
+   <b>¿Cuál es tu edad?</b>
+   <input type="text" id="Edad">
+   <br><br>
+   
+   <b>¿Cuál es tu correo?</b>
+   <input type="text" id="Correo">
+   <br><br>
+   
+   <button onclick="Validacion()">Validar información</button>
+   <button onclick="Borrar()">Borrar datos</button>
+   
+   <br><br>
+   <div id="resultado"></div>
+
+   <script>
+       function Validacion() {
+           let inputNombre = document.getElementById("Nombre").value.trim();
+           let inputEdad = document.getElementById("Edad").value.trim();
+           let inputCorreo = document.getElementById("Correo").value.trim();
+
+           let divResultado = document.getElementById("resultado");
+
+           if (inputNombre === "" || inputEdad === "" || inputCorreo === "") {
+               divResultado.innerHTML = " Error: Por favor, llena todos los campos.";
+               divResultado.style.color = "red"; 
+               divResultado.style.fontWeight = "bold";
+               return;
+           }
+
+           if (isNaN(inputEdad)) {
+               divResultado.innerHTML = " Error: La edad debe ser un valor numérico.";
+               divResultado.style.color = "red";
+               return;
+           }
+
+           divResultado.style.color = "blue";
+           divResultado.style.fontWeight = "normal";
+           
+           divResultado.innerHTML = "Éxito: Tu nombre es " + inputNombre + 
+                                    ", tienes " + inputEdad + " años y tu correo es " + inputCorreo;
+            
+           console.log("Datos procesados correctamente:");
+           console.log({ Nombre: inputNombre, Edad: inputEdad, Correo: inputCorreo });
+       }
+
+
+       function Borrar() {
+           document.getElementById("Nombre").value = "";
+           document.getElementById("Edad").value = "";
+           document.getElementById("Correo").value = "";
+           document.getElementById("resultado").innerHTML = "";
+           console.log("Formulario limpiado por el usuario.");
+       }
+   </script>
+</body>
+</html>
