@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .seccion-menu {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            background-color: #bbb4b4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selecciona una herramienta</h1>
+    <button onclick="cambiarMenu('Menu triangulo')"> Area Triangulo</button>
+    <button onclick="cambiarMenu('Menu esfera')"> Volumen Esfera</button>
+    <button onclick="cambiarMenu('Menu conversion')">Conversion de monedas</button>
+    <script>
+        function cambiarMenu(menuId){
+            const trianguloMenu = document.getElementById("Menu triangulo");
+            const esferaMenu = document.getElementById("Menu esfera");
+            const conversionMenu = document.getElementById("Menu conversion");
+            trianguloMenu.style.display = "none";
+            esferaMenu.style.display = "none";
+            conversionMenu.style.display = "none";
+            document.getElementById(menuId).style.display = "block";
+        }
+        function calcularArea(){
+            const base = document.getElementById("base").value;
+            const altura = document.getElementById("altura").value;
+            const area = (base * altura) / 2;
+            document.getElementById("area").value = area;
+            if (base <=0 || altura <=0) {
+                document.getElementById("area").value = "Por favor, ingresa valores numéricos positivos para la base y la altura.";
+                document.getElementById("area").style.color = "red";
+             }
+        }
+        function calcularVolumen(){
+            const radio = document.getElementById("radio").value;
+            const volumen = (4/3) * Math.PI * Math.pow(radio, 3);
+            document.getElementById("volumen").value = volumen;
+            if (radio <=0) {
+                document.getElementById("volumen").value = "Por favor, ingresa un valor numérico positivo para el radio.";
+                document.getElementById("volumen").style.color = "red";
+             }
+        }
+        function calcularDolares(){
+            const cantidadEnPesos = document.getElementById("CantidadDePesos").value;
+            const tasaDeCambio = 17.5;
+            const cantidadEnDolares = cantidadEnPesos / tasaDeCambio;
+            document.getElementById("CantidadDeDolares").value = cantidadEnDolares.toFixed(2);
+            if (cantidadEnPesos <=0) {
+                document.getElementById("CantidadDeDolares").value = "Por favor, ingresa un valor numérico positivo para la cantidad en pesos.";
+                document.getElementById("CantidadDeDolares").style.color = "red";
+             }
+        }
+    </script>
+    <div id="Menu triangulo" class="seccion-menu" style="display:none;">
+    <label for="base">Base del triangulo:</label>
+    <input type="number" id="base" placeholder="base del triangulo">
+    <br>
+        <label for="altura">Altura del triangulo:</label>
+    <input type="number" id="altura" placeholder="altura del triangulo">
+            <br>
+            <label for="area">Calcular area del triangulo:</label>
+            <input type="text" id="area" placeholder="area del triangulo" readonly>
+            <br>
+           <button onclick="calcularArea()">Calcular area</button>
+    </div>
+    <hr>
+    <div id="Menu esfera" class="seccion-menu" style="display: none;">
+    <label for="radio">Radio de la esfera:</label>
+    <input type="number" id="radio" placeholder="radio de la esfera"><br>
+    <label for="volumen">Volumen de la esfera:</label>
+    <input type="text" id="volumen" placeholder="volumen de la esfera" readonly><br>
+     <button onclick="calcularVolumen()">Calcular volumen de la esfera</button>
+     </div>
+     <hr>
+     <div id="Menu conversion" class="seccion-menu" style="display:none;">
+     <label for="CantidadDePesos">Cantidad en pesos:</label>
+     <input type="number" id="CantidadDePesos" placeholder="cantidad en pesos"><br>
+          <button onclick="calcularDolares()">Calcular cantidad en dolares</button><br>
+     <label for="CantidadDeDolares">Cantidad en dolares:</label>
+     <input type="text" id="CantidadDeDolares" placeholder="cantidad en dolares" readonly><br>
+     </div> 
+    
+
+</body>
+</html>
